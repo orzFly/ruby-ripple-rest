@@ -9,7 +9,9 @@ require 'ripple-rest/errors'
 require 'ripple-rest/schemas/json'
 require 'ripple-rest/schemas/account'
 require 'ripple-rest/schemas/account_settings'
+require 'ripple-rest/schemas/trustlines'
 require 'ripple-rest/schemas/balance'
+require 'ripple-rest/schemas/notifications'
 
 class << RippleRest
   def setup endpoint
@@ -21,7 +23,6 @@ class << RippleRest
   end
   
   def post uri, args = {}
-    p args.to_json
     wrap_error { RestClient.post "#{@endpoint}/#{uri}", args, :content_type => :json }
   end
   
@@ -41,11 +42,23 @@ class << RippleRest
       raise RippleRest::RippleRestError.new json["message"] unless json["success"]
     end
   
-    if response.code != 200
+    if !response || response.code != 200
       raise RippleRest::ProtocolError.new "Protocol is wrong or network is down", response
     end
     
-    json
+    json || response.to_str
+  end
+  
+  def get_transaction hash
+    get("v1/transactions/#{hash}")["transaction"]
+  end
+  
+  def server_connected?
+    get("v1/server/connected")["connected"]
+  end
+  
+  def server_info
+    get("v1/server")
   end
 end
   
