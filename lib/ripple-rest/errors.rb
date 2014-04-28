@@ -1,5 +1,6 @@
 module RippleRest
   class ProtocolError < RuntimeError
+    # @return [RestClient::Response]
     attr_accessor :response
     def initialize message, response
       super message
@@ -8,6 +9,7 @@ module RippleRest
   end
   
   class RippleRestError < RuntimeError
+    # @return [String, Hash]
     attr_accessor :response
     def initialize message, response
       super message
