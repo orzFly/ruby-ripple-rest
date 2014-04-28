@@ -35,7 +35,7 @@
       "description": "A 256-bit hash that can be used to identify a particular payment",
       "$ref": "Hash256"
     },
-    "paths ": {
+    "paths": {
       "description": "A \"stringified\" version of the Ripple PathSet structure that users should treat as opaque",
       "type": "string"
     },

@@ -6,14 +6,10 @@ require 'bigdecimal'
 require 'rest-client'
 require 'ripple-rest/version'
 require 'ripple-rest/errors'
-require 'ripple-rest/schemas/json'
-require 'ripple-rest/schemas/account'
-require 'ripple-rest/schemas/account_settings'
-require 'ripple-rest/schemas/trustlines'
-require 'ripple-rest/schemas/balance'
-require 'ripple-rest/schemas/notifications'
-require 'ripple-rest/schemas/amount'
-require 'ripple-rest/schemas/payments'
+require 'ripple-rest/rest-object'
+require 'ripple-rest/generated-schemas'
+require 'ripple-rest/schemas'
+require 'ripple-rest/helpers'
 
 class << RippleRest
   # Set endpoint URI

@@ -5,7 +5,6 @@ source "http://rubygems.org"
 gem "ripple-rest", :path => File.expand_path("..", __FILE__)
 
 gem "rest-client"
-gem "autoparse"
 
 # These are development dependencies 
 gem "rake"

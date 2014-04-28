@@ -15,12 +15,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "ripple-rest"
 
   s.add_dependency "rest-client", "~> 1.6.7"
-  s.add_dependency "autoparse", "~> 0.3.3"
 
-  s.files        = Dir["{lib}/**/*.rb", "{lib}/**/*.json", "bin/*", "LICENSE", "*.md"]
+  s.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
   s.require_path = 'lib'
-
-  # s.executables = ["newgem"]
-
-  # s.extensions = "ext/extconf.rb"
 end
