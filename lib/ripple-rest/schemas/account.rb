@@ -38,9 +38,20 @@ module RippleRest
       }.call
     end
       
-    
     def require_secret
       raise ArgumentError.new("Secret is required for this operation.") unless secret
+    end
+    
+    def payments
+      payments ||= lambda {
+        obj = Payments.new
+        obj.account = self
+        obj
+      }.call
+    end
+    
+    def to_s
+      address
     end
   end
 end

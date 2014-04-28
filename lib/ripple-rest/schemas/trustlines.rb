@@ -1,4 +1,6 @@
 module RippleRest
+  
+  generate_schema :Trustline
   class Trustlines
     include Enumerable
     

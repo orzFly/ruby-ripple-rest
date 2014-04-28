@@ -14,10 +14,4 @@ module RippleRest
   generate_schema :Timestamp
   generate_schema :UINT32
   generate_schema :URL
-  
-  generate_schema :Amount
-  generate_schema :Notification
-  generate_schema :Order
-  generate_schema :Payment
-  generate_schema :Trustline
 end

@@ -8,5 +8,10 @@ module RippleRest
   end
   
   class RippleRestError < RuntimeError
+    attr_accessor :response
+    def initialize message, response
+      super message
+      @response = response
+    end
   end
 end

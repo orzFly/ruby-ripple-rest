@@ -1,4 +1,6 @@
 module RippleRest
+  generate_schema :Notification
+  
   class Notifications
     attr_accessor :account
     

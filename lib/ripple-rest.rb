@@ -1,6 +1,7 @@
 module RippleRest; end
   
 require 'json'
+require 'uri'
 require 'bigdecimal'
 require 'autoparse'
 require 'rest-client'
@@ -12,6 +13,9 @@ require 'ripple-rest/schemas/account_settings'
 require 'ripple-rest/schemas/trustlines'
 require 'ripple-rest/schemas/balance'
 require 'ripple-rest/schemas/notifications'
+require 'ripple-rest/schemas/order'
+require 'ripple-rest/schemas/amount'
+require 'ripple-rest/schemas/payment'
 
 class << RippleRest
   def setup endpoint
@@ -39,7 +43,7 @@ class << RippleRest
     
     json = JSON.parse response.to_str rescue nil
     if json
-      raise RippleRest::RippleRestError.new json["message"] unless json["success"]
+      raise RippleRest::RippleRestError.new(json["message"], json) unless json["success"]
     end
   
     if !response || response.code != 200
@@ -59,6 +63,10 @@ class << RippleRest
   
   def server_info
     get("v1/server")
+  end
+  
+  def next_uuid
+    get("v1/uuid")["uuid"]
   end
 end
   
