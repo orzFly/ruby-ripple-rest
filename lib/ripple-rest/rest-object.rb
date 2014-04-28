@@ -4,12 +4,14 @@ require 'time'
 module RippleRest
   # @api private
   module RestTypeHelper
+    # @!visibility private
     # @api private
     def self.exist? key
       @converter ||= {}
       @converter.keys.include? key
     end
     
+    # @!visibility private
     # @api private
     def self.register key, to, from, check, name = nil
       return key if exist? key
@@ -20,6 +22,7 @@ module RippleRest
       key
     end
     
+    # @!visibility private
     # @api private
     def self.register_string key, regexp
       reg = Regexp.new regexp
@@ -31,6 +34,7 @@ module RippleRest
         "String<#{key}>: #{reg.inspect}"
     end
     
+    # @!visibility private
     # @api private
     def self.register_array type
       register :"Array<#{type}>",
@@ -40,11 +44,13 @@ module RippleRest
         "Array<#{type}>"
     end
     
+    # @!visibility private
     # @api private
     def self.register_string_otg regexp
       register_string :"String<#{regexp.inspect}>", regexp
     end
     
+    # @!visibility private
     # @api private
     def self.register_object key, klass
       register key, 
@@ -54,24 +60,28 @@ module RippleRest
         "#{key}"
     end
     
+    # @!visibility private
     # @api private
     def self.convert_to type, obj
       return nil if obj.nil?
       @converter[type][0].call obj
     end
     
+    # @!visibility private
     # @api private
     def self.convert_from type, obj
       return nil if obj.nil?
       @converter[type][1].call obj
     end
     
+    # @!visibility private
     # @api private
     def self.convert_check type, obj
       return true if obj.nil?
       @converter[type][2].call obj
     end
     
+    # @!visibility private
     # @api private
     def self.convert_raise type, obj
       raise ArgumentError.new "#{obj.inspect} cannot be casted to #{@converter[type][3]}"
@@ -112,6 +122,7 @@ module RippleRest
   end
   
   class RestObject
+    # @param data [Hash]
     def initialize data = nil
       data.each do |key, value|
         if @@properties[self.class][key.to_sym]
@@ -124,6 +135,7 @@ module RippleRest
     end
     
     # Convert to a hash
+    # @return [Hash]
     def to_hash
       result = {}
       @@properties[self.class].each do |key, type|
@@ -137,11 +149,13 @@ module RippleRest
       result
     end
     
+    # @!visibility protected
     # @api private
     def self.required symbol
       @@required[self][symbol] = true
     end
     
+    # @!visibility protected
     # @api private
     def self.property symbol, typeobj
       if typeobj.is_a? Symbol
@@ -167,5 +181,11 @@ module RippleRest
     
     @@required ||= Hash.new { |h, k| h[k] = Hash.new }
     @@properties ||= Hash.new { |h, k| h[k] = Hash.new }
+  end
+  
+  
+  class << RestObject
+    protected :property
+    protected :required
   end
 end
