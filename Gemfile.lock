@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ripple-rest (0.0.1)
+    ripple-rest (0.0.2)
       autoparse (~> 0.3.3)
       rest-client (~> 1.6.7)
 
