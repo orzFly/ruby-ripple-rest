@@ -17,10 +17,12 @@ module RippleRest
       hash = {}
       hash["payment"] = self.to_hash
       hash["secret"] = @account.secret
-      hash["client_resource_id"] = RippleRest.next_uuid
+      hash["client_resource_id"] = client_resource_id = RippleRest.next_uuid
       
       RippleRest.post("v1/payments", hash)["client_resource_id"]
     end
+    
+    attr_accessor :client_resource_id
   end
   
   class Payments
@@ -50,6 +52,21 @@ module RippleRest
       payment.destination_account = destination_account.to_s
       payment.destination_amount = Amount.from_string(destination_amount)
       payment
+    end
+    
+    def query options = {}
+      qs = ""
+      if options && options.size > 0
+        qs = "?" + options.map { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')
+      end
+      
+      uri = "v1/accounts/#{account.address}/payments#{qs}"
+      
+      RippleRest.get(uri)["payments"].map do |i|
+        payment = Payment.new(i["payment"])
+        payment.client_resource_id = i["client_resource_id"]
+        payment
+      end
     end
   end
 end

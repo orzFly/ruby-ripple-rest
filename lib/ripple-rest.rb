@@ -1,7 +1,7 @@
 module RippleRest; end
   
 require 'json'
-require 'uri'
+require 'cgi'
 require 'bigdecimal'
 require 'autoparse'
 require 'rest-client'
