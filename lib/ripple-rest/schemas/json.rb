@@ -108,7 +108,7 @@ module RippleRest
 
     # @!attribute exchange_rate
     #   A string representation of the order price, defined as the cost one unit of the base currency in terms of the counter currency. This may be specified along with the base_amount OR the counter_amount but not both. If it is unspecified it will be computed automatically based on the counter_amount divided by the base_amount
-    #   @return [BigDecimal]
+    #   @return [String<FloatString>]
 
 
     # @!attribute expiration_timestamp
@@ -148,7 +148,7 @@ module RippleRest
 
     # @!attribute fee
     #   The Ripple Network transaction fee, represented in whole XRP (NOT "drops", or millionths of an XRP, which is used elsewhere in the Ripple protocol) used to create the order
-    #   @return [BigDecimal]
+    #   @return [String<FloatString>]
 
 
     # @!attribute state
@@ -259,7 +259,7 @@ module RippleRest
 
     # @!attribute source_slippage
     #   An optional cushion for the source_amount to increase the likelihood that the payment will succeed. The source_account will never be charged more than source_amount.value + source_slippage
-    #   @return [BigDecimal]
+    #   @return [String<FloatString>]
 
 
     # @!attribute destination_account
@@ -329,7 +329,7 @@ module RippleRest
 
     # @!attribute fee
     #   The Ripple Network transaction fee, represented in whole XRP (NOT "drops", or millionths of an XRP, which is used elsewhere in the Ripple protocol)
-    #   @return [BigDecimal]
+    #   @return [String<FloatString>]
 
 
     # @!attribute source_balance_changes
@@ -403,12 +403,12 @@ module RippleRest
 
     # @!attribute limit
     #   The maximum value of the currency that the account may hold issued by the counterparty
-    #   @return [BigDecimal]
+    #   @return [String<FloatString>]
 
 
     # @!attribute reciprocated_limit
     #   The maximum value of the currency that the counterparty may hold issued by the account
-    #   @return [BigDecimal]
+    #   @return [String<FloatString>]
 
 
     # @!attribute authorized_by_account

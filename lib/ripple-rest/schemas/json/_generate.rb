@@ -51,7 +51,7 @@ schemas.values.select{|i|i["type"] == "object"}.each do |json|
     elsif v["type"] == "float"
       type = "[Float]"
     elsif v["$ref"] == "FloatString"
-      type = "[BigDecimal]"
+      type = "[String<FloatString>]" # BigDecimal
     elsif v["$ref"] == "UInt32"
       type = "[UInt32]"
     elsif v["$ref"] && schemas[v["$ref"]]["type"] == "string"
