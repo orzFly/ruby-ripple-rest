@@ -15,7 +15,7 @@ require 'ripple-rest/schemas/balance'
 require 'ripple-rest/schemas/notifications'
 require 'ripple-rest/schemas/order'
 require 'ripple-rest/schemas/amount'
-require 'ripple-rest/schemas/payment'
+require 'ripple-rest/schemas/payments'
 
 class << RippleRest
   def setup endpoint
