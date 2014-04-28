@@ -100,6 +100,11 @@ module RippleRest
         RETURN_SELF, 
         lambda { |x| [true, false].include? x }
     
+    register :Float,
+        lambda { |x| x.to_f.to_s },
+        lambda { |x| x.to_f },
+        lambda { |x| x.is_a?(Numeric) }
+    
     register :FloatString,
         lambda { |x| x.is_a?(BigDecimal) ? x.to_s("F") : BigDecimal.new(x.to_s).to_s("F") },
         lambda { |x| x.is_a?(BigDecimal) ? x : BigDecimal.new(x) },
