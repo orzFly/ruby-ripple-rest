@@ -76,7 +76,7 @@ class << RippleRest
     
     json = JSON.parse response.to_str rescue nil
     if json
-      raise RippleRest::RippleRestError.new(json["message"], json) unless json["success"]
+      raise RippleRest::RippleRestError.new(json["message"] || json["error"] || json.to_json, json) unless json["success"]
     end
   
     if !response || response.code != 200

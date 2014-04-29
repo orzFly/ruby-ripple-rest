@@ -13,7 +13,8 @@ module RippleRest
       
       account.require_secret
       
-      hash = to_hash
+      hash = {}
+      hash["settings"] = to_hash
       hash["secret"] = account.secret
       
       RippleRest.post "v1/accounts/#{account.address}/settings", hash
