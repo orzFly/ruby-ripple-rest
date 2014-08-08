@@ -126,7 +126,7 @@ module RippleRest
       
       if source_currencies
         cur = source_currencies.join(",")
-        uri += "?#{cur}"
+        uri += "?source_currencies=#{cur}"
       end
       
       RippleRest.get(uri)["payments"].map(&Payment.method(:new)).map do |i|
