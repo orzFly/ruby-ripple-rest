@@ -59,7 +59,7 @@ class << RippleRest
   
   # @api private
   def post uri, args = {}
-    wrap_error { RestClient.post "#{@endpoint}/#{uri}", args, :content_type => :json }
+    wrap_error { RestClient.post "#{@endpoint}/#{uri}", args.to_json, :content_type => :json }
   end
   
   # @api private
