@@ -129,7 +129,7 @@ module RippleRest
         uri += "?source_currencies=#{cur}"
       end
       
-      RippleRest.get(uri)["payments"].map(&Payment.method(:new)).map do |i|
+      RippleRest.get(uri)["payments"].map(&Payment.method(:new)).each do |i|
         i.account = account
       end
     end
