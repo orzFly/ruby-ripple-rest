@@ -74,7 +74,8 @@ module RippleRest
       hash["secret"] = @account.secret
       hash["client_resource_id"] = client_resource_id = RippleRest.next_uuid
       
-      RippleRest.post("v1/payments", hash)["client_resource_id"]
+      source_account = self.to_hash[:source_account]
+      RippleRest.post("v1/accounts/#{source_account}/payments", hash)["client_resource_id"]
     end
     
     # @return [String]
