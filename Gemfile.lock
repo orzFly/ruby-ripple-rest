@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ripple-rest (1.0.0)
+    ripple-rest (1.0.4)
       rest-client (~> 1.6.7)
 
 GEM
