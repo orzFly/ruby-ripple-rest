@@ -18,9 +18,9 @@ module RippleRest
     # @return [Array<Balance>]
     # @raise [RippleRestError] if RippleRest server returns an error
     # @raise [ProtocolError] if protocol is wrong or network is down
-    def balances
+    def balances args = {}
       RippleRest
-        .get("v1/accounts/#{@address}/balances")["balances"]
+        .get("v1/accounts/#{@address}/balances", args)["balances"]
         .map(&Balance.method(:new))
     end
     
