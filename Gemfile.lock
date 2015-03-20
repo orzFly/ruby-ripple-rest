@@ -1,16 +1,20 @@
 PATH
   remote: .
   specs:
-    ripple-rest (1.0.4)
+    ripple-rest (1.1.0)
       rest-client (~> 1.6.7)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    mime-types (2.2)
-    rake (10.3.1)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
+    json (1.8.2)
+    mime-types (1.25.1)
+    rake (10.4.2)
+    rdoc (4.2.0)
+      json (~> 1.4)
+    rest-client (1.6.8)
+      mime-types (~> 1.16)
+      rdoc (>= 2.4.2)
     rspec (2.0.0.beta.8)
       rspec-core (= 2.0.0.beta.8)
       rspec-expectations (= 2.0.0.beta.8)
